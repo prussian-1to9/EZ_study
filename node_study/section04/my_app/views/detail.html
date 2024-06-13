@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if detail %}
+        <h1>Post detail</h1>
+
+        <p>title : {{ detail.title }}</p>
+        <p>content : {{ detail.contents }}</p>
+        <p>date : {{ detail.date }}</p>
+
+        <a class="btn border" href="/edit/{{ detail.id }}">Edit</a>
+        <form action="/delete/{{ detail.id }}" method="POST" class="d-inline">
+            <input type="submit" value="Delete" class="btn border">
+        </form>
+
+    {% else %}
+        <h1>Post edit</h1>
+
+        <form action="/edit/{{ edit.id }}" method="POST">
+            <label for="title">title</label>
+            <input type="text" name="title" id="title" value="{{ edit.title }}">
+
+            <br>
+
+            <label for="content">content</label>
+            <textarea name="contents" id="contents" cols="20" rows="5">{{ edit.contents }}</textarea>
+            
+            <br>
+
+            <input type="submit" value="done">
+        </form>
+    {% endif %}
+
+{% endblock %}

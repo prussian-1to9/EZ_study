@@ -1,3 +1,6 @@
 # DEPENDENCY DIRECTORIES
 # node js
 node_modules/
+
+# for /node_study
+data/
