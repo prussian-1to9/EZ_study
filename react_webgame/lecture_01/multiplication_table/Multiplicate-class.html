@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>[Class ver.] Multiplication Table</title>
+</head>
+<body>
+    <div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+class Multiplication extends React.Component {
+    state = {
+        first: Math.ceil(Math.random() * 9),
+        second: Math.ceil(Math.random() * 9),
+        value: '',
+        result: '',
+    };
+
+    onSubmit = (e) => {
+        e.preventDefault();
+
+        // 정답 여부 갱신, 구구단 숫자 갱신
+        if (parseInt(this.state.value) === this.state.first * this.state.second) {
+            this.setState((prevState) => {
+                return {
+                    result: '정답: ' + prevState.value,
+                    first: Math.ceil(Math.random() * 9),
+                    second: Math.ceil(Math.random() * 9),
+                    value: '',
+                };
+            });
+        } else {
+            this.setState({
+                result: '땡',
+                value: '',
+            });
+        }
+        this.input.focus();
+    };
+
+    input;
+    onRefInput = (c) => { this.input = c; }; // input value 갱신
+
+    render() {
+        return (
+            <React.Fragment>
+                <div>{this.state.first} X {this.state.second} =</div>
+                <form onSubmit={ this.onSubmit }>
+                    <input type="number"
+                        ref={ this.onRefInput }
+                        value={ this.state.value }
+                        onChange={ this.onChange}
+                    />
+                    <button>입력!</button>
+                    <div>{ this.state.result }</div>
+                </form>
+            </React.Fragment>
+        );
+    }
+}
+
+ReactDOM.render(<Multiplication/>, document.querySelector('#root'));
+
+</script>
+</body>
+</html>

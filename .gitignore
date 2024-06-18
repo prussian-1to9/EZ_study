@@ -1,6 +1,14 @@
 # DEPENDENCY DIRECTORIES
+# general
+.idea/
+.vscode/
+
 # node js
 node_modules/
+dist/
 
 # for /node_study
 data/
+
+# for /money_manager
+image/
