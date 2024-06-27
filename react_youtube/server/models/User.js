@@ -71,20 +71,17 @@ userSchema.methods.generateToken = function(cb) {
 
     user.tokenExp = oneHour;
     user.token = token;
-    user.save(function (err, user){
-        if(err) return cb(err)
-        cb(null, user);
-    })
+    user.save().then((user) => { cb(null, user) })
+    .catch((err) => { cb(err) });
 }
 
 userSchema.statics.findByToken = function (token, cb) {
     var user = this;
 
     jwt.verify(token,'secret',function(err, decode){
-        user.findOne({"_id":decode, "token":token}, function(err, user){
-            if(err) return cb(err);
-            cb(null, user);
-        })
+        user.findOne({ "_id": decode, "token": token })
+        .then((user) => { cb(null, user); })
+        .catch((err) => { cb(err); });
     })
 }
 

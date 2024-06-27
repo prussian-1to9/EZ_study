@@ -25,21 +25,22 @@ router.post("/register", (req, res) => {
 
     const user = new User(req.body);
 
-    user.save((err, doc) => {
-        if (err) return res.json({ success: false, err });
-        return res.status(200).json({
-            success: true
-        });
+    user.save().then(() => {
+        return res.status(200).json({ success: true });
+    }).catch(err => {
+        return res.json({ success: false, err });
     });
 });
 
 router.post("/login", (req, res) => {
-    User.findOne({ email: req.body.email }, (err, user) => {
-        if (!user)
+    User.findOne({ email: req.body.email })
+    .then(user => {
+        if (!user) {
             return res.json({
                 loginSuccess: false,
                 message: "Auth failed, email not found"
             });
+        }
 
         user.comparePassword(req.body.password, (err, isMatch) => {
             if (!isMatch)
@@ -60,11 +61,10 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/logout", auth, (req, res) => {
-    User.findOneAndUpdate({ _id: req.user._id }, { token: "", tokenExp: "" }, (err, doc) => {
-        if (err) return res.json({ success: false, err });
-        return res.status(200).send({
-            success: true
-        });
+    User.findOneAndUpdate({ _id: req.user._id}, { token: "", tokenExp: "" })
+    .then((res) => { return res.json({ success: true }); })
+    .catch((err) => {
+        return res.json({ success: false, err });
     });
 });
 
