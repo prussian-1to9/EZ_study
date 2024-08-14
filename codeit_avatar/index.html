@@ -21,7 +21,7 @@
         <div class="preview">
             <div class="avatar-container">
                 <div class="avatar">
-                    <img class="avatar-image" src="./images/avatar/tone_300.svg">
+                    <img class="avatar-image" id="avatar-tone" src="./images/avatar/tone_300.svg">
                     <img class="avatar-image" src="./images/avatar/hoodie.svg">
                     <img class="avatar-image" src="./images/avatar/hair_short3-black.svg">
                     <img class="avatar-image" src="./images/avatar/acc_none.svg">
@@ -37,26 +37,31 @@
                 <li class="avatar-menu-item">액세서리</li>
             </ul>
             <div class="avatar-selector-container">
-                <!-- 피부 톤 -->
-                <ul class="avatar-selector active">
+
+                <!-- 피부 톤 : li > div 태그의 data-avatar-value로 이미지 명 설정 -->
+                <ul id="avatar-selector-tone" class="avatar-selector active">
                     <li class="avatar-selector-item">
                         <div class="avatar-selector-preview"
-                            style="background-image: url('./images/avatar/previews/preview_tone_100.svg')"></div>
+                            style="background-image: url('./images/avatar/previews/preview_tone_100.svg')"
+                            data-avatar-value="tone_100"></div>
                         <div class="avatar-selector-label">피부 톤 100</div>
                     </li>
                     <li class="avatar-selector-item">
                         <div class="avatar-selector-preview"
-                            style="background-image: url('./images/avatar/previews/preview_tone_200.svg')"></div>
+                            style="background-image: url('./images/avatar/previews/preview_tone_200.svg')"
+                            data-avatar-value="tone_200"></div>
                         <div class="avatar-selector-label">피부 톤 200</div>
                     </li>
                     <li class="avatar-selector-item">
                         <div class="avatar-selector-preview"
-                            style="background-image: url('./images/avatar/previews/preview_tone_300.svg')"></div>
+                            style="background-image: url('./images/avatar/previews/preview_tone_300.svg')"
+                            data-avatar-value="tone_300"></div>
                         <div class="avatar-selector-label">피부 톤 300</div>
                     </li>
                     <li class="avatar-selector-item">
                         <div class="avatar-selector-preview"
-                            style="background-image: url('./images/avatar/previews/preview_tone_400.svg')"></div>
+                            style="background-image: url('./images/avatar/previews/preview_tone_400.svg')"
+                            data-avatar-value="tone_400"></div>
                         <div class="avatar-selector-label">피부 톤 400</div>
                     </li>
                 </ul>
