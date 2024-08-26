@@ -5,10 +5,13 @@
 
 # node js
 node_modules/
+package-lock.json
 dist/
 
 # for /node_study
 data/
 
-# for /money_manager
+# ignore images
 image/
+*.svg
+favicon.ico
