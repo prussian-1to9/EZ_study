@@ -1,0 +1,15 @@
+[
+    [
+        { "value": "E", "label": "Extraversion" },
+        { "value": "I", "label": "Introversion" }
+    ], [
+        { "value": "S", "label": "Sensing" },
+        { "value": "N", "label": "Intuition" }
+    ], [
+        { "value": "T", "label": "Thinking" },
+        { "value": "F", "label": "Feeling" }
+    ], [
+        { "value": "J", "label": "Judging" },
+        { "value": "P", "label": "Perceiving" }
+    ]
+]

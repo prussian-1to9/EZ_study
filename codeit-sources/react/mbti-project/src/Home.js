@@ -1,18 +1,27 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import mock from './mock';
 
 export default function Home() {
-    console.log(mock);
-    console.log(typeof mock);
+    // MBTI filter
+    const [filter, setFilter] = useState(null);
+
     return (
         <div>
-            <h1>MBTI별 좋아하는 컬러</h1>
+            <h1>favorite color by MBTI</h1>
+            {filter && (
+                <div onClick={() => setFilter(null)}>
+                    {filter}
+                    <img src="/images/x.svg" alt="unset filter"/>
+                </div>
+            )}
             <div>
-                <Link to="/new">+ 새 컬러 등록하기</Link>
+                <Link to="/new">+ Add new color</Link>
             </div>
             <ul>
                 {mock.map((item) => (
-                    <li key={item.id}>
+                    <li key={item.id}
+                        onClick={() => setFilter(item.mbti)}>
                         {item.id} {item.mbti} --- {item.colorCode}
                     </li>
                 ))}
