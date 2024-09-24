@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MBTISelect from "./components/MBTISelect/MBTISelect";
 import ColorInput from "./components/MBTISelect/ColorInput";
 import Button from "./components/MBTISelect/Button";
+
 import generateColorCode from "./lib/generateColorCode";
+import axios from "./lib/axios";
 import styles from "./css/New.module.css";
 
 export default function New() {
@@ -12,6 +14,7 @@ export default function New() {
     mbti: "INTJ",
     colorCode: "#180866",
   });
+  const navigate = useNavigate(); // handle url
 
   const handleChange = (name, value) => {
     setFormValue((preFormValue) => ({
@@ -23,6 +26,14 @@ export default function New() {
   const handleRandomClick = () => {
     const nextColorCode = generateColorCode();
     handleChange("colorCode", nextColorCode);
+  };
+
+  const handleSubmit = async () => {
+    await axios.post("/color-surveys/", {
+      ...formValue,
+      password: "0000",
+    });
+    navigate("/");
   };
 
   return (
@@ -56,7 +67,9 @@ export default function New() {
           onChange={(newColorCode) => handleChange("colorCode", newColorCode)}
         />
       </section>
-      <Button className={styles.submit}>Add Color</Button>
+      <Button className={styles.submit} onClick={handleSubmit}>
+        Add Color
+      </Button>
     </div>
   );
 }

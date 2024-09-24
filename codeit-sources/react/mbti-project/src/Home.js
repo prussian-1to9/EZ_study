@@ -1,12 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ColorSurvey from "./components/MBTISelect/ColorSurvey";
-import mock from "./mock";
+import axios from "./lib/axios";
 import styles from "./css/Home.module.css";
 
 export default function Home() {
-  // MBTI filter
-  const [filter, setFilter] = useState(null);
+  const [items, setItems] = useState([]); // MBTI-color data
+  const [filter, setFilter] = useState(null); // MBTI filter
+
+  const handleLoad = async (mbti) => {
+    const res = await axios("/color-surveys/", {
+      params: { mbti, limit: 20 },
+    });
+    const { results } = res.data;
+    setItems(results);
+  };
+
+  useEffect(() => {
+    handleLoad(filter);
+  }, [filter]);
 
   return (
     <div className={styles.container}>
@@ -36,7 +48,7 @@ export default function Home() {
           + Add new color
         </Link>
         <ul className={styles.items}>
-          {mock.map((item) => (
+          {items.map((item) => (
             <li key={item.id}>
               <ColorSurvey value={item} onClick={() => setFilter(item.mbti)} />
             </li>
