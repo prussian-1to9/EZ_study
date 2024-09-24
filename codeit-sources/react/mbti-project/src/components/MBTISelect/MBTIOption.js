@@ -1,9 +1,11 @@
-export default function MBTIOption({ selected, label, value, onClick}) {
-    const style = { fontWeight: selected ? 'bold' : 'normal' };
-    return (
-        <span style={style} onClick={onClick}>
-            {label}
-            {value}
-        </span>
-    )
+import styles from "./css/MBTISelect.module.css";
+
+export default function MBTIOption({ selected, label, value, onClick }) {
+  const className = `${styles.mbtiOption} ${selected ? styles.selected : ""}`;
+  return (
+    <span className={className} onClick={onClick}>
+      <span className={styles.char}>{value}</span>
+      {label}
+    </span>
+  );
 }
