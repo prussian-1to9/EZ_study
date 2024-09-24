@@ -54,3 +54,25 @@
   flex-shrink: 0;
   width: 105px;
 }
+
+/* mobile */
+@media screen and (max-width: 944px) {
+  .colorSurvey {
+    padding: 18px 16px;
+  }
+  .id {
+    width: 37px;
+    margin-right: 16px;
+  }
+  .mbti {
+    width: 54px;
+    margin-right: 16px;
+  }
+  .colorChip {
+    margin-left: 16px;
+    margin-right: 8px;
+  }
+  .colorCode {
+    width: 72px;
+  }
+}
