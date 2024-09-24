@@ -4,6 +4,7 @@ import MBTISelect from "./components/MBTISelect/MBTISelect";
 import ColorInput from "./components/MBTISelect/ColorInput";
 import Button from "./components/MBTISelect/Button";
 import generateColorCode from "./lib/generateColorCode";
+import styles from "./css/New.module.css";
 
 export default function New() {
   // handle form values
@@ -25,25 +26,37 @@ export default function New() {
   };
 
   return (
-    <div>
-      <h1>Add new color!</h1>
-      <Link to="/">
-        <img src="/images/x.svg" alt="cancel" />
-      </Link>
-
-      <h2>MBTI</h2>
-      <MBTISelect
-        value={formValue.mbti}
-        onChange={(newMBTI) => handleChange("mbti", newMBTI)}
-      />
-
-      <h2>Color</h2>
-      <img src="/images/repeat.svg" alt="random" onClick={handleRandomClick} />
-      <ColorInput
-        value={formValue.colorCode}
-        onChange={(newColorCode) => handleChange("colorCode", newColorCode)}
-      />
-      <Button>Add Color</Button>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <h1 className={styles.headerHeading}>Add new color!</h1>
+        <Link className={styles.cancel} to="/">
+          <img className={styles.cancelIcon} src="/images/x.svg" alt="cancel" />
+        </Link>
+      </header>
+      <section className={styles.section}>
+        <h2 className={styles.sectionHeading}>MBTI</h2>
+        <MBTISelect
+          value={formValue.mbti}
+          onChange={(newMBTI) => handleChange("mbti", newMBTI)}
+        />
+      </section>
+      <section className={styles.section}>
+        <h2 className={styles.sectionHeading}>
+          Color
+          <button className={styles.random} onClick={handleRandomClick}>
+            <img
+              className={styles.repeatIcon}
+              src="/images/repeat.svg"
+              alt="random"
+            />
+          </button>
+        </h2>
+        <ColorInput
+          value={formValue.colorCode}
+          onChange={(newColorCode) => handleChange("colorCode", newColorCode)}
+        />
+      </section>
+      <Button className={styles.submit}>Add Color</Button>
     </div>
   );
 }
