@@ -10,3 +10,5 @@ repository for my studying
 - **react_webgame** : source codes during studying 'inflearn' lecture [웹 게임을 만들며 배우는 React](https://www.inflearn.com/course/web-game-react)
 - **free_code_camp** : source codes of lectures in the site 'free code camp'
     - **JS_algorihtms_data_structure**
+
+- **codeit-sources** : source codes during studying 'codeit' lectures
