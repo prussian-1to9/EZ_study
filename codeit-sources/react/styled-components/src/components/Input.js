@@ -7,14 +7,20 @@ const FONT_SIZES = {
 };
 
 const Input = styled.input`
-  border: 2px solid ${({ error }) => (error ? "#f44336" : "#eeeeee")};
-  border-radius: ${({ round }) => (round ? 9999 : 4)}px;
+  border: none;
   outline: none;
-  font-size: ${({ size }) => FONT_SIZES[size] ?? FONT_SIZES.medium}px;
-  padding: 16px;
+  display: block;
+  padding: 8px 0;
+  border-bottom: 1px solid #eeeeee;
+  width: 100%;
+  font-size: ${({ size }) => FONT_SIZES[size] ?? 18}px;
+  margin-bottom: 16px;
 
+  &::placeholder {
+    color: #c4c5cd;
+  }
   &:focus {
-    ${({ error }) => (error ? "#f44336" : "#7760b4")};
+    border-bottom: 2px solid ${({ error }) => (error ? "#f44336" : "#7760b4")};
   }
 `;
 

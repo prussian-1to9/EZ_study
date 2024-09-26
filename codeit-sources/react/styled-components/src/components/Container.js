@@ -3,7 +3,8 @@ import Input from "./Input";
 
 const Container = styled.div`
   margin: 0 auto;
-  width: 400px;
+  width: 85%;
+  max-width: 400px;
 
   ${Input} {
     box-sizing: border-box;

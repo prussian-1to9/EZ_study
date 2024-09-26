@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-//import nailImg from "./nail.png";
 
 const FONT_SIZES = {
   large: 24,
@@ -7,7 +6,7 @@ const FONT_SIZES = {
   small: 16,
 };
 const fontSize = css`
-  font-size: ${({ size }) => FONT_SIZES[size] ?? FONT_SIZES["medium"]}px;
+  font-size: ${({ size }) => FONT_SIZES[size] ?? 18}px;
 `;
 
 const Icon = styled.img`
@@ -16,26 +15,29 @@ const Icon = styled.img`
 `;
 
 const StyledButton = styled.button`
-  background-color: #6750a4;
+  width: 100%;
+  background-color: #6500c3;
   border: none;
-  border-radius: ${({ round }) => (round ? "9999px" : "3px")};
   color: #ffffff;
+  cursor: pointer;
   ${fontSize}
   padding: 16px;
+  margin: 8px 0;
+  border-radius: ${({ round }) => (round ? "9999px" : "8px")};
 
   ${Icon} {
     margin-right: 4px;
   }
   &:hover,
   &:active {
-    background-color: #463770;
+    background-color: #7760b4;
   }
 `;
 
 export default function Button({ children, ...buttonProps }) {
   return (
     <StyledButton {...buttonProps}>
-      {/* <Icon src={nailImg} alt="nail" /> */}
+      {buttonProps.icon && <Icon src={buttonProps.icon} alt="icon" />}
       {children}
     </StyledButton>
   );
