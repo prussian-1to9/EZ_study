@@ -1,11 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 //import nailImg from "./nail.png";
 
-const SIZES = {
+const FONT_SIZES = {
   large: 24,
   medium: 20,
   small: 16,
 };
+const fontSize = css`
+  font-size: ${({ size }) => FONT_SIZES[size] ?? FONT_SIZES["medium"]}px;
+`;
 
 const Icon = styled.img`
   width: 16px;
@@ -17,7 +20,7 @@ const StyledButton = styled.button`
   border: none;
   border-radius: ${({ round }) => (round ? "9999px" : "3px")};
   color: #ffffff;
-  font-size: ${({ size }) => SIZES[size] ?? SIZES["medium"]}px;
+  ${fontSize}
   padding: 16px;
 
   ${Icon} {
