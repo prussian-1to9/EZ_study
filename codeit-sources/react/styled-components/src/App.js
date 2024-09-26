@@ -1,9 +1,11 @@
-import Button from "./components/Button";
+//import Button from "./components/Button";
+import Input from "./components/Input";
 
 function App() {
   return (
-    <div>
-      <Button>Hello Styled Components!</Button>
+    <div style={{ padding: "5px" }}>
+      {/* <Button>Hello Styled Components!</Button> */}
+      <Input />
     </div>
   );
 }
