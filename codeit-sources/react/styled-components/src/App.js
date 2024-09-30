@@ -13,7 +13,6 @@ import Spinner from "./components/Spinner";
 
 /* component images */
 import CodeitLogoImg from "./components/icons/codeit.png";
-import SpinnerIcon from "./components/icons/spinner.svg";
 
 const THEMES = {
   light: {
@@ -85,7 +84,7 @@ export default function App() {
         <Input type="password" placeholder="password" />
         <Button onClick={ButtonClick}>
           {loading ? "" : "Sign in"}
-          <Spinner visible={loading} src={SpinnerIcon} alt="spinner" />
+          <Spinner visible={loading} />
         </Button>
         <KakaoButton>Sign in for Kakao</KakaoButton>
       </Container>
