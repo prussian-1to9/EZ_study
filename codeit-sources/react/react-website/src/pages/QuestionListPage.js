@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { getQuestions } from "../api";
 import DateText from "../components/DateText";
 import ListPage from "../components/ListPage";
@@ -12,7 +13,7 @@ import searchIcon from "../assets/search.svg";
 function QuestionItem({ question }) {
   return (
     <Card className={styles.questionItem} key={question.title}>
-      <div className={styles.info}>
+      <Link to={`/questions/${question.id}`} className={styles.info}>
         <p className={styles.title}>
           {question.title}
           {question.answers.length > 0 && (
@@ -22,7 +23,7 @@ function QuestionItem({ question }) {
         <p className={styles.date}>
           <DateText value={question.createdAt} />
         </p>
-      </div>
+      </Link>
       <div className={styles.writer}>
         <Avatar
           photo={question.writer.profile.photo}
