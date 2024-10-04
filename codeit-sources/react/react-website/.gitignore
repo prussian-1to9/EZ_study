@@ -1,0 +1,7 @@
+
+# ignore all codeit's assets
+assets/
+mock.json
+*.jpg
+*.png
+*.svg
