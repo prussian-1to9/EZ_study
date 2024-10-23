@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import { getQuestionById } from "../api";
+import { useParams, Navigate } from "react-router-dom";
+import { getQuestionById } from "@api";
 import Avatar from "@components/Avatar";
 import Card from "@components/Card";
 import Container from "@components/Container";
@@ -8,8 +9,11 @@ import Lined from "@components/Lined";
 import Warn from "@components/Warn";
 import styles from "@pages/QuestionPage.module.css";
 
-function QuestionPage() {
-  const question = getQuestionById("616825");
+export default function QuestionPage() {
+  const { questionId } = useParams();
+  const question = getQuestionById(questionId);
+
+  if (!question) return <Navigate to="/questions" />;
 
   return (
     <>
@@ -87,5 +91,3 @@ function Answer({ className, answer }) {
     </Card>
   );
 }
-
-export default QuestionPage;

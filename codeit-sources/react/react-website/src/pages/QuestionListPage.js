@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { getQuestions } from "../api";
-import DateText from "../components/DateText";
-import ListPage from "../components/ListPage";
-import Warn from "../components/Warn";
-import Card from "../components/Card";
-import Avatar from "../components/Avatar";
-import styles from "./QuestionListPage.module.css";
-import searchBarStyles from "../components/SearchBar.module.css";
-import searchIcon from "../assets/search.svg";
+import { Link, useSearchParams } from "react-router-dom";
+import { getQuestions } from "@api";
+import DateText from "@components/DateText";
+import ListPage from "@components/ListPage";
+import Warn from "@components/Warn";
+import Card from "@components/Card";
+import Avatar from "@components/Avatar";
+import searchBarStyles from "@components/SearchBar.module.css";
+import styles from "@pages/QuestionListPage.module.css";
+import searchIcon from "@assets/search.svg";
 
 function QuestionItem({ question }) {
   return (
@@ -36,9 +36,20 @@ function QuestionItem({ question }) {
 
 function QuestionListPage() {
   const [keyword, setKeyword] = useState("");
-  const questions = getQuestions();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const questions = getQuestions().filter((question) => {
+    if (searchParams.get("keyword")) {
+      return question.title.includes(searchParams.get("keyword"));
+    }
+    return question;
+  });
 
   const handleKeywordChange = (e) => setKeyword(e.target.value);
+
+  const formOnSubmit = (e) => {
+    searchParams.set("keyword", e.target.value);
+    setSearchParams(searchParams);
+  };
 
   return (
     <ListPage
@@ -46,7 +57,7 @@ function QuestionListPage() {
       title="커뮤니티"
       description="코드댓의 2만 수강생들과 함께 공부해봐요."
     >
-      <form className={searchBarStyles.form}>
+      <form className={searchBarStyles.form} onSubmit={formOnSubmit}>
         <input
           name="keyword"
           value={keyword}
