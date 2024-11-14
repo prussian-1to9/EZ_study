@@ -35,19 +35,18 @@ function QuestionItem({ question }) {
 }
 
 function QuestionListPage() {
-  const [keyword, setKeyword] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
+  const initKeyword = searchParams.get("keyword");
+  const [keyword, setKeyword] = useState(initKeyword ?? "");
+
   const questions = getQuestions().filter((question) => {
-    if (searchParams.get("keyword")) {
-      return question.title.includes(searchParams.get("keyword"));
-    }
-    return question;
+    if (!keyword) return question;
+    return question.title.includes(keyword);
   });
 
   const handleKeywordChange = (e) => setKeyword(e.target.value);
-
-  const formOnSubmit = (e) => {
-    searchParams.set("keyword", e.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setSearchParams(searchParams);
   };
 
@@ -57,7 +56,7 @@ function QuestionListPage() {
       title="커뮤니티"
       description="코드댓의 2만 수강생들과 함께 공부해봐요."
     >
-      <form className={searchBarStyles.form} onSubmit={formOnSubmit}>
+      <form className={searchBarStyles.form} onSubmit={handleSubmit}>
         <input
           name="keyword"
           value={keyword}
