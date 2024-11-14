@@ -7,14 +7,14 @@ const COLORS = {
 function getCourseColor(code = "000") {
   const firstCode = code.charAt(0);
   switch (firstCode) {
-    case 3:
-    case 9:
+    case "3":
+    case "9":
       return COLORS.green;
-    case 5:
+    case "5":
       return COLORS.yellow;
-    case 1:
-    case 7:
-    case 8:
+    case "1":
+    case "7":
+    case "8":
     default:
       return COLORS.purple;
   }
