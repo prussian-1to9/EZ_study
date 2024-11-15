@@ -1,8 +1,18 @@
+import React from "react";
+import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 import Container from "./Container";
 import UserMenu from "./UserMenu";
 import logoImg from "../assets/logo.svg";
 import styles from "./Nav.module.css";
+
+const NavContainer = styled.nav`
+  position: relative;
+  z-index: 1;
+  padding: 15px 0;
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+`;
 
 const getLinkStyle = ({ isActive }) => {
   // return react inline-style object
@@ -10,9 +20,9 @@ const getLinkStyle = ({ isActive }) => {
     textDecoration: isActive ? "underline" : undefined,
   };
 };
-function Nav() {
+const Nav = () => {
   return (
-    <div className={styles.nav}>
+    <NavContainer>
       <Container className={styles.container}>
         <Link to="/">
           <img src={logoImg} alt="Codethat Logo" />
@@ -33,8 +43,9 @@ function Nav() {
           </li>
         </ul>
       </Container>
-    </div>
+    </NavContainer>
   );
-}
+};
 
 export default Nav;
+export { NavContainer };

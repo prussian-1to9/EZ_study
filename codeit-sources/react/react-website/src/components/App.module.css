@@ -31,13 +31,3 @@ a:visited {
   flex-direction: column;
   min-height: 100vh;
 }
-
-.nav,
-.footer {
-  flex: none;
-}
-
-.body {
-  position: relative;
-  flex-grow: 1;
-}
