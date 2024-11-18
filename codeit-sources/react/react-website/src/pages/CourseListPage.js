@@ -1,12 +1,26 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+
+import { getCourses } from "../api";
+import searchIcon from "@assets/search.svg";
+
+import SearchBar from "@components/SearchBar";
 import ListPage from "../components/ListPage";
 import Warn from "../components/Warn";
 import CourseItem from "../components/CourseItem";
-import { getCourses } from "../api";
 import styles from "./CourseListPage.module.css";
-import searchBarStyles from "../components/SearchBar.module.css";
-import searchIcon from "../assets/search.svg";
+import styled from "styled-components";
+
+const CourseList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+
+  @media (max-width: 840px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
 
 function CourseListPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,7 +40,7 @@ function CourseListPage() {
       title="모든 코스"
       description="자체 제작된 코스들로 기초를 쌓으세요."
     >
-      <form className={searchBarStyles.form} onSubmit={handleSubmit}>
+      <SearchBar onSubmit={handleSubmit}>
         <input
           name="keyword"
           value={keyword}
@@ -36,16 +50,16 @@ function CourseListPage() {
         <button type="submit">
           <img src={searchIcon} alt="검색" />
         </button>
-      </form>
+      </SearchBar>
 
       <p className={styles.count}>총 {courses.length}개 코스</p>
 
       {courses.length > 0 ? (
-        <div className={styles.courseList}>
+        <CourseList>
           {courses.map((course) => (
             <CourseItem key={course.id} course={course} />
           ))}
-        </div>
+        </CourseList>
       ) : (
         <Warn
           className={styles.emptyList}

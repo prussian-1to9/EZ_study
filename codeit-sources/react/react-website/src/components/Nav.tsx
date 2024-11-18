@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
-import Container from "./Container";
-import UserMenu from "./UserMenu";
-import logoImg from "../assets/logo.svg";
-import styles from "./Nav.module.css";
+
+import Container from "@components/Container";
+import UserMenu from "@components/UserMenu";
+import logoImg from "@assets/logo.svg";
 
 const NavContainer = styled.nav`
   position: relative;
@@ -14,20 +14,44 @@ const NavContainer = styled.nav`
   box-shadow: var(--box-shadow);
 `;
 
-const getLinkStyle = ({ isActive }) => {
-  // return react inline-style object
+const StyledContainer = styled(Container)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const NavMenu = styled.ul`
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  & > li:not(:last-child) {
+    margin-right: 30px;
+  }
+
+  & a:hover,
+  & a:active {
+    text-decoration: underline;
+  }
+`;
+
+// return react inline-style object
+const getLinkStyle = ({ isActive }: { isActive?: boolean }) => {
   return {
     textDecoration: isActive ? "underline" : undefined,
   };
 };
+
 const Nav = () => {
   return (
     <NavContainer>
-      <Container className={styles.container}>
+      <StyledContainer>
         <Link to="/">
           <img src={logoImg} alt="Codethat Logo" />
         </Link>
-        <ul className={styles.menu}>
+        <NavMenu>
           <li>
             <NavLink to="/courses" style={getLinkStyle}>
               카탈로그
@@ -41,8 +65,8 @@ const Nav = () => {
           <li>
             <UserMenu />
           </li>
-        </ul>
-      </Container>
+        </NavMenu>
+      </StyledContainer>
     </NavContainer>
   );
 };

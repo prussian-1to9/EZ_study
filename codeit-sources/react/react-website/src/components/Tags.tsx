@@ -20,7 +20,7 @@ const StyledUL = styled.ul`
   }
 `;
 
-function Tags({ values = [] }) {
+function Tags({ values }: { values: string[] }) {
   return (
     <StyledUL>
       {values.map((value) => (

@@ -8,7 +8,7 @@ interface Topic {
 }
 interface Course {
   id: string;
-  code: number;
+  code: string;
   title: string;
   difficulty: number;
   slug: string;

@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+
+import searchIcon from "@assets/search.svg";
 import { getQuestions } from "@api";
+
+import SearchBar from "@components/SearchBar";
 import DateText from "@components/DateText";
 import ListPage from "@components/ListPage";
 import Warn from "@components/Warn";
 import Card from "@components/Card";
 import Avatar from "@components/Avatar";
-import searchBarStyles from "@components/SearchBar.module.css";
 import styles from "@pages/QuestionListPage.module.css";
-import searchIcon from "@assets/search.svg";
 
 function QuestionItem({ question }) {
   return (
@@ -56,7 +58,7 @@ function QuestionListPage() {
       title="커뮤니티"
       description="코드댓의 2만 수강생들과 함께 공부해봐요."
     >
-      <form className={searchBarStyles.form} onSubmit={handleSubmit}>
+      <SearchBar onSubmit={handleSubmit}>
         <input
           name="keyword"
           value={keyword}
@@ -66,7 +68,7 @@ function QuestionListPage() {
         <button type="submit">
           <img src={searchIcon} alt="검색" />
         </button>
-      </form>
+      </SearchBar>
 
       <p className={styles.count}>총 {questions.length}개 질문</p>
 
