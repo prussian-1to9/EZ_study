@@ -7,7 +7,7 @@ import { deleteWishlist, getWishlist } from "../api";
 
 import Button from "@components/Button";
 import Container from "@components/Container";
-import CourseItem from "@components/CourseItem";
+import CourseItem from "@components/Course/CourseItem";
 import { WarnEmpty } from "@components/Warn";
 
 const WishListContainer = styled(Container)`

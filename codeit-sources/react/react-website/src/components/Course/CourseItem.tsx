@@ -5,12 +5,12 @@ import styled from "styled-components";
 import getCourseColor from "@utils/getCourseColor";
 
 import Card from "@components/Card";
-import CourseIcon from "@components/CourseIcon";
-import Tags from "@components/Tags";
+import CourseIcon from "./CourseIcon";
+import Tags from "./Tags";
 
 const DIFFICULTY = ["입문", "초급", "중급", "고급"];
 
-const CourseThumb = styled.div`
+const CourseThumb = styled.div<{ borderColor: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,13 +51,10 @@ const CourseItem = ({ course }: { course: Course }) => {
   const showSummary = course.summary && course.title !== course.summary;
   const courseColor = getCourseColor(course.code);
   const difficulty = DIFFICULTY[course.difficulty || 0];
-  const thumbStyle = {
-    borderColor: courseColor,
-  };
 
   return (
     <Card>
-      <CourseThumb style={thumbStyle}>
+      <CourseThumb borderColor={courseColor}>
         <CourseIcon photoUrl={course.photoUrl} />
       </CourseThumb>
 

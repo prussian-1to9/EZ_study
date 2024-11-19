@@ -5,11 +5,11 @@ import styled from "styled-components";
 import { getCourses } from "../api";
 import searchIcon from "@assets/search.svg";
 
-import SearchBar from "@components/SearchBar";
-import ListPage from "../components/ListPage";
-import { WarnEmpty } from "../components/Warn";
-import CourseItem from "../components/CourseItem";
-import styles from "./CourseListPage.module.css";
+import SearchBar from "@components/ListPage/SearchBar";
+import ListPage from "@components/ListPage/ListPage";
+import Count from "@components/ListPage/Count";
+import { WarnEmpty } from "@components/Warn";
+import CourseItem from "@components/Course/CourseItem";
 
 const CourseList = styled.div`
   display: grid;
@@ -52,7 +52,7 @@ function CourseListPage() {
         </button>
       </SearchBar>
 
-      <p className={styles.count}>총 {courses.length}개 코스</p>
+      <Count>총 {courses.length}개 코스</Count>
 
       {courses.length > 0 ? (
         <CourseList>
