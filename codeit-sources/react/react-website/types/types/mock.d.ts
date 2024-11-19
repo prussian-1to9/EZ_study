@@ -18,12 +18,12 @@ interface Course {
   newReleased: boolean;
   topics: Topic[];
 }
-interface Photo {
-  photo: string;
-}
+
 interface Writer {
   name: string;
-  profile: Photo[];
+  profile: {
+    photo: string;
+  };
   level: string;
 }
 interface Answer {

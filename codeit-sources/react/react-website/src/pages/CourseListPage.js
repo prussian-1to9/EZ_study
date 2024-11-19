@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import styled from "styled-components";
 
 import { getCourses } from "../api";
 import searchIcon from "@assets/search.svg";
 
 import SearchBar from "@components/SearchBar";
 import ListPage from "../components/ListPage";
-import Warn from "../components/Warn";
+import { WarnEmpty } from "../components/Warn";
 import CourseItem from "../components/CourseItem";
 import styles from "./CourseListPage.module.css";
-import styled from "styled-components";
 
 const CourseList = styled.div`
   display: grid;
@@ -61,8 +61,7 @@ function CourseListPage() {
           ))}
         </CourseList>
       ) : (
-        <Warn
-          className={styles.emptyList}
+        <WarnEmpty
           title="조건에 맞는 코스가 없어요."
           description="올바른 검색어가 맞는지 다시 한 번 확인해 주세요."
         />

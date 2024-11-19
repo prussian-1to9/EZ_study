@@ -7,7 +7,7 @@ import { getQuestions } from "@api";
 import SearchBar from "@components/SearchBar";
 import DateText from "@components/DateText";
 import ListPage from "@components/ListPage";
-import Warn from "@components/Warn";
+import { WarnEmpty } from "@components/Warn";
 import Card from "@components/Card";
 import Avatar from "@components/Avatar";
 import styles from "@pages/QuestionListPage.module.css";
@@ -79,8 +79,7 @@ function QuestionListPage() {
           ))}
         </div>
       ) : (
-        <Warn
-          className={styles.emptyList}
+        <WarnEmpty
           title="조건에 맞는 질문이 없어요."
           description="올바른 검색어가 맞는지 다시 한 번 확인해 주세요."
         />
