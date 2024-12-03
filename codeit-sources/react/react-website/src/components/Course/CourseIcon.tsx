@@ -54,16 +54,8 @@ const StyledImg = styled.img`
   height: 60px;
 `;
 
-function CourseIcon({
-  className,
-  photoUrl = "default",
-}: {
-  className?: string;
-  photoUrl?: string;
-}) {
-  return (
-    <StyledImg className={className} src={ICONS[photoUrl]} alt={photoUrl} />
-  );
-}
+const CourseIcon = ({ photoUrl = "default" }: { photoUrl: string }) => {
+  return <StyledImg src={ICONS[photoUrl]} alt={photoUrl} />;
+};
 
 export default CourseIcon;

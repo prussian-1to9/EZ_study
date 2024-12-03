@@ -23,15 +23,10 @@ const WarnDescription = styled.p`
   color: #878787;
 `;
 
-const Warn = ({
-  title = "",
-  description = "",
-}: {
-  className?: string;
-  variant?: string;
+const Warn: React.FC<{
   title: string;
   description: string;
-}) => {
+}> = ({ title, description }) => {
   return (
     <WarnConatiner>
       <img src={warnIcon} alt="경고" />

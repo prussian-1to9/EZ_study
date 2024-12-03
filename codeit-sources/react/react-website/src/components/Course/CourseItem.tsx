@@ -2,21 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import getCourseColor from "@utils/getCourseColor";
-
 import Card from "@components/Card";
-import CourseIcon from "./CourseIcon";
+import CourseThumb from "./CourseThumb";
 import Tags from "./Tags";
 
 const DIFFICULTY = ["입문", "초급", "중급", "고급"];
-
-const CourseThumb = styled.div<{ borderColor: string }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 0;
-  border-top: 10px solid black;
-`;
 
 const CourseContent = styled.div`
   display: flex;
@@ -49,14 +39,11 @@ const CourseContent = styled.div`
 
 const CourseItem = ({ course }: { course: Course }) => {
   const showSummary = course.summary && course.title !== course.summary;
-  const courseColor = getCourseColor(course.code);
   const difficulty = DIFFICULTY[course.difficulty || 0];
 
   return (
     <Card>
-      <CourseThumb borderColor={courseColor}>
-        <CourseIcon photoUrl={course.photoUrl} />
-      </CourseThumb>
+      <CourseThumb course={course} />
 
       <CourseContent>
         <h2>

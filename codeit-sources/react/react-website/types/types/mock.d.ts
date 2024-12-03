@@ -29,7 +29,7 @@ interface Writer {
 interface Answer {
   createdAt: string;
   updatedAt: string;
-  conent: string;
+  content: string;
   writer: Writer;
   id: string;
 }

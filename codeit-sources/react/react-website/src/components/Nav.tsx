@@ -2,19 +2,24 @@ import React from "react";
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 
-import Container from "@components/Container";
-import UserMenu from "@components/UserMenu";
 import logoImg from "@assets/logo.svg";
 
-const NavContainer = styled.nav`
+import Container from "@components/Container";
+import UserMenu from "@components/UserMenu";
+
+const NavBar = styled.nav`
   position: relative;
   z-index: 1;
   padding: 15px 0;
   background-color: #fff;
   box-shadow: var(--box-shadow);
+
+  & img {
+    vertical-align: middle;
+  }
 `;
 
-const StyledContainer = styled(Container)`
+const NavContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -46,11 +51,12 @@ const getLinkStyle = ({ isActive }: { isActive?: boolean }) => {
 
 const Nav = () => {
   return (
-    <NavContainer>
-      <StyledContainer>
+    <NavBar>
+      <NavContainer>
         <Link to="/">
           <img src={logoImg} alt="Codethat Logo" />
         </Link>
+
         <NavMenu>
           <li>
             <NavLink to="/courses" style={getLinkStyle}>
@@ -66,8 +72,8 @@ const Nav = () => {
             <UserMenu />
           </li>
         </NavMenu>
-      </StyledContainer>
-    </NavContainer>
+      </NavContainer>
+    </NavBar>
   );
 };
 

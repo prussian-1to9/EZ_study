@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import landingImg from "@assets/landing.svg";
-
+import { media } from "@utils/media";
 import Button from "@components/Button";
 import Container from "@components/Container";
 import Lined from "@components/Lined";
@@ -26,10 +26,10 @@ const HomePageContainer = styled(Container)`
   display: flex;
   margin: 120px auto 226px;
 
-  @media (max-width: 840px) {
+  ${media.tablet`
     flex-direction: column-reverse;
     margin: 60px auto 226px;
-  }
+  `}
 `;
 
 const HomePageFigure = styled.div`
@@ -37,12 +37,13 @@ const HomePageFigure = styled.div`
   padding: 20px;
   text-align: center;
 
+  ${media.tablet`
+    margin-bottom: 40px;  
+  `}
+
   & img {
     width: 100%;
     max-width: 418px;
-  }
-  @media (max-width: 840px) {
-    margin-bottom: 40px;
   }
 `;
 
@@ -92,6 +93,7 @@ function HomePage() {
             <Button>지금 시작하기</Button>
           </div>
         </HomePageContext>
+
         <HomePageFigure>
           <img src={landingImg} alt="그래프, 모니터, 윈도우, 자물쇠, 키보드" />
         </HomePageFigure>
