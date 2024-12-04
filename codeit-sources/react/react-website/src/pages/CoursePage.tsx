@@ -1,5 +1,7 @@
-import { useParams, Navigate, useNavigate } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
+import { useParams, Navigate, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { addWishlist, getCourseBySlug } from "../api";
 
 import getCourseColor from "@utils/getCourseColor";
@@ -53,6 +55,9 @@ function CoursePage() {
 
   return (
     <>
+      <Helmet>
+        <title>Codethat - {course.title}</title>
+      </Helmet>
       <CourseHeader style={headerStyle}>
         <Container>
           <CourseIcon photoUrl={course.photoUrl} />
@@ -64,7 +69,7 @@ function CoursePage() {
         </Container>
       </CourseHeader>
       <TopicContainer>
-        {course.topics.map(({ topic }) => (
+        {course.topics.map(({ topic }: Topic) => (
           <Card key={topic.slug}>
             <h3>{topic.title}</h3>
             <p>{topic.summary}</p>

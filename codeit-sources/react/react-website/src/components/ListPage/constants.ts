@@ -1,8 +1,9 @@
 import { css } from "styled-components";
-import type { CSSProp } from "styled-components";
 
 import catalogIcon from "@assets/catalog.svg";
 import communityIcon from "@assets/community.svg";
+
+import type { CSSProp } from "styled-components";
 
 const ICON = {
   catalog: {

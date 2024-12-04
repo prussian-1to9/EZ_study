@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { Link, useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 import searchIcon from "@assets/search.svg";
-import { getQuestions } from "@api";
+import { getQuestions } from "@api/index";
 
 import SearchBar from "@components/ListPage/SearchBar";
 import DateText from "@components/Question/DateText";
@@ -25,7 +26,7 @@ const QuestionCard = styled(Card)`
     margin-bottom: 11px;
   }
 
-  & ${Link} {
+  & a {
     flex: 1 1;
   }
   & ${Count} {
@@ -34,6 +35,8 @@ const QuestionCard = styled(Card)`
   }
 `;
 const QuestionItemTitle = styled.p`
+  display: flex;
+  align-items: center;
   margin: 0 auto 10px;
   font-size: 14px;
   font-weight: 500;
@@ -53,7 +56,7 @@ const QuestionWriter = styled.div`
   margin-left: 30px;
 `;
 
-function QuestionItem({ question }) {
+function QuestionItem({ question }: { question: Question }) {
   return (
     <QuestionCard key={question.title}>
       <Link to={`/questions/${question.id}`}>
@@ -82,50 +85,56 @@ function QuestionListPage() {
   const initKeyword = searchParams.get("keyword");
   const [keyword, setKeyword] = useState(initKeyword ?? "");
 
-  const questions = getQuestions().filter((question) => {
+  const questions = getQuestions().filter((question: Question) => {
     if (!keyword) return question;
     return question.title.includes(keyword);
   });
 
-  const handleKeywordChange = (e) => setKeyword(e.target.value);
-  const handleSubmit = (e) => {
+  const handleKeywordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setKeyword(e.target.value);
+  const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
     setSearchParams(searchParams);
   };
 
   return (
-    <ListPage
-      variant="community"
-      title="커뮤니티"
-      description="코드댓의 2만 수강생들과 함께 공부해봐요."
-    >
-      <SearchBar onSubmit={handleSubmit}>
-        <input
-          name="keyword"
-          value={keyword}
-          placeholder="검색으로 질문 찾기"
-          onChange={handleKeywordChange}
-        />
-        <button type="submit">
-          <img src={searchIcon} alt="검색" />
-        </button>
-      </SearchBar>
+    <>
+      <Helmet>
+        <title>Codethat - 커뮤니티</title>
+      </Helmet>
+      <ListPage
+        variant="community"
+        title="커뮤니티"
+        description="코드댓의 2만 수강생들과 함께 공부해봐요."
+      >
+        <SearchBar onSubmit={handleSubmit}>
+          <input
+            name="keyword"
+            value={keyword}
+            placeholder="검색으로 질문 찾기"
+            onChange={handleKeywordChange}
+          />
+          <button type="submit">
+            <img src={searchIcon} alt="검색" />
+          </button>
+        </SearchBar>
 
-      <Count>총 {questions.length}개 질문</Count>
+        <Count>총 {questions.length}개 질문</Count>
 
-      {questions.length > 0 ? (
-        <QuestionContainer>
-          {questions.map((question) => (
-            <QuestionItem key={question.id} question={question} />
-          ))}
-        </QuestionContainer>
-      ) : (
-        <WarnEmpty
-          title="조건에 맞는 질문이 없어요."
-          description="올바른 검색어가 맞는지 다시 한 번 확인해 주세요."
-        />
-      )}
-    </ListPage>
+        {questions.length > 0 ? (
+          <QuestionContainer>
+            {questions.map((question: Question) => (
+              <QuestionItem key={question.id} question={question} />
+            ))}
+          </QuestionContainer>
+        ) : (
+          <WarnEmpty
+            title="조건에 맞는 질문이 없어요."
+            description="올바른 검색어가 맞는지 다시 한 번 확인해 주세요."
+          />
+        )}
+      </ListPage>
+    </>
   );
 }
 

@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-import landingImg from "@assets/landing.svg";
 import { media } from "@utils/media";
+import landingImg from "@assets/landing.svg";
 import Button from "@components/Button";
 import Container from "@components/Container";
 import Lined from "@components/Lined";
@@ -90,7 +91,9 @@ function HomePage() {
             지금 함께 시작해보실래요?
           </HomePageText>
           <div>
-            <Button>지금 시작하기</Button>
+            <Link to="/courses">
+              <Button>지금 시작하기</Button>
+            </Link>
           </div>
         </HomePageContext>
 

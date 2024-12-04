@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "@components/User/Avatar";
+import Avatar from "./Avatar";
 
 function Writer({ value }: { value: Writer }) {
   return (

@@ -6,11 +6,9 @@
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
-      "@utils/*": ["src/utils/*"]
-      // "@types/*": ["types/*"],
-      // "@styles/*": ["src/styles/*"],
-      // "@constants/*": ["src/constants/*"],
-      // "@constants": ["src/constants"]
+      "@utils/*": ["src/utils/*"],
+      "@styles/*": ["src/styles/*"],
+      "@constants/*": ["src/constants/*"]
     }
   }
 }

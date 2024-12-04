@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 import closeButton from "@assets/closeButton.svg";
 import { deleteWishlist, getWishlist } from "../api";
@@ -59,35 +60,40 @@ function WishlistPage() {
   }, []);
 
   return (
-    <WishListContainer>
-      <h1>나의 위시리스트</h1>
-      {courses.length === 0 ? (
-        <>
-          <WarnEmpty
-            title="담아 놓은 코스가 없어요."
-            description="카탈로그에서 나에게 필요한 코스를 찾아보세요."
-          />
-          <div style={{ textAlign: "center", margin: "12px auto" }}>
-            <Link to="/courses">
-              <Button as="div">코스 찾아보기</Button>
-            </Link>
-          </div>
-        </>
-      ) : (
-        <WishItems>
-          {courses.map((course: Course) => (
-            <WishItem key={course.slug}>
-              <CourseItem course={course} />
-              <DeleteButton
-                src={closeButton}
-                alt="닫기"
-                onClick={() => handleDelete(course.slug)}
-              />
-            </WishItem>
-          ))}
-        </WishItems>
-      )}
-    </WishListContainer>
+    <>
+      <Helmet>
+        <title>Codethat - 위시리스트</title>
+      </Helmet>
+      <WishListContainer>
+        <h1>나의 위시리스트</h1>
+        {courses.length === 0 ? (
+          <>
+            <WarnEmpty
+              title="담아 놓은 코스가 없어요."
+              description="카탈로그에서 나에게 필요한 코스를 찾아보세요."
+            />
+            <div style={{ textAlign: "center", margin: "12px auto" }}>
+              <Link to="/courses">
+                <Button as="div">코스 찾아보기</Button>
+              </Link>
+            </div>
+          </>
+        ) : (
+          <WishItems>
+            {courses.map((course: Course) => (
+              <WishItem key={course.slug}>
+                <CourseItem course={course} />
+                <DeleteButton
+                  src={closeButton}
+                  alt="닫기"
+                  onClick={() => handleDelete(course.slug)}
+                />
+              </WishItem>
+            ))}
+          </WishItems>
+        )}
+      </WishListContainer>
+    </>
   );
 }
 

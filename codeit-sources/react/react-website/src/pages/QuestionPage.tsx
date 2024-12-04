@@ -1,6 +1,8 @@
+import React from "react";
 import styled from "styled-components";
 import { useParams, Navigate } from "react-router-dom";
-import { getQuestionById } from "@api";
+import { Helmet } from "react-helmet";
+import { getQuestionById } from "@api/index";
 
 import Container from "@components/Container";
 import Lined from "@components/Lined";
@@ -39,6 +41,9 @@ export default function QuestionPage() {
 
   return (
     <>
+      <Helmet>
+        <title>Codethat - 위시리스트</title>
+      </Helmet>
       <QuestionContent>
         <QuestionContainer>
           <QuestionInfo question={question} />
@@ -52,7 +57,7 @@ export default function QuestionPage() {
         </h2>
 
         {question.answers.length > 0 ? (
-          question.answers.map((answer) => <Answer answer={answer} />)
+          question.answers.map((answer: Answer) => <Answer answer={answer} />)
         ) : (
           <Warn
             title="답변을 기다리고 있어요."
